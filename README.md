@@ -1,2 +1,2 @@
-# pulse
-startup+
+# pulse+
+MVP do app pulse+
