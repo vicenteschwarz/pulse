@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pulse+ — MVP Gamificado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="topbar container">
+      <div class="brand">
+        <!-- se a imagem não carregar, cai no fallback visual -->
+        <img src="nova-logo-pulse.png" alt="Pulse+ Logo" class="logo-img"
+             onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<div class=&quot;logo-fallback&quot;></div>')"/>
+        <h1>• Empresa X</h1>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>Seu usuário</label>
+          <select id="currentUser"></select>
+        </div>
+        <button id="addUserBtn" class="ghost">+ adicionar usuário</button>
+      </div>
+    </div>
+    <div class="container tabs" id="tabs"></div>
+  </header>
+
+  <main class="container">
+    <!-- CHECK-IN -->
+    <section id="screen-checkin" class="screen">
+      <div class="grid">
+        <div class="card col-8">
+          <h2>Check-in de Humor</h2>
+          <p class="muted">Como você está se sentindo agora? Isso ajuda a liderança a agir preventivamente e reconhecer o time.</p>
+          <div class="moods" id="moodBtns"></div>
+          <div class="field" style="margin-top:12px; max-width:680px">
+            <label>Quer deixar um comentário rápido (opcional)?</label>
+            <textarea id="moodNote" rows="3" placeholder="Ex: Reunião produtiva, falta de insumo, sugestão de melhoria..."></textarea>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <button class="primary" id="submitMood">Enviar check-in</button>
+            <span class="muted" id="checkinStatus"></span>
+          </div>
+        </div>
+        <div class="card col-4">
+          <h2>Últimos check-ins</h2>
+          <div class="list" id="recentCheckins"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KUDOS -->
+    <section id="screen-kudos" class="screen" style="display:none">
+      <div class="grid">
+        <div class="card col-6">
+          <h2>Dar Kudos (Reconhecimento)</h2>
+          <p class="muted">Valorize atitudes positivas. Todo mundo ganha quando boas ações são visíveis.</p>
+          <div class="row">
+            <div class="field">
+              <label>Para</label>
+              <select id="kudoTo"></select>
+            </div>
+            <div class="field" style="flex:1">
+              <label>Mensagem</label>
+              <input id="kudoMsg" placeholder="Ex: Obrigado por ajudar no setup da máquina!" />
+            </div>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <button class="primary" id="sendKudo">Enviar Kudo</button>
+            <span class="muted" id="kudoStatus"></span>
+          </div>
+        </div>
+        <div class="card col-6">
+          <h2>Mural de Reconhecimentos</h2>
+          <div class="list" id="kudoFeed"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSÕES -->
+    <section id="screen-missions" class="screen" style="display:none">
+      <div class="grid">
+        <div class="card col-8">
+          <h2>Missões da Semana</h2>
+          <p class="muted">Complete ações que fortalecem a cultura e a segurança. Ganhe pontos e insígnias.</p>
+          <div id="missionsList" class="list"></div>
+        </div>
+        <div class="card col-4">
+          <h2>Suas Insígnias</h2>
+          <div id="badges" class="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RANKING -->
+    <section id="screen-leaderboard" class="screen" style="display:none">
+      <div class="card">
+        <div class="flex-between">
+          <h2>Ranking (pontos)</h2>
+          <span class="muted">Foco em colaboração saudável. Recompensas podem ser coletivas.</span>
+        </div>
+        <table id="leaderboardTbl">
+          <thead><tr><th>#</th><th>Colaborador</th><th>Pontos</th><th>Última ação</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="screen-dashboard" class="screen" style="display:none">
+      <div class="grid">
+        <div class="card col-6">
+          <h2>Clima — últimos 7 dias</h2>
+          <div id="climateBars" class="list"></div>
+        </div>
+        <div class="card col-6">
+          <h2>Sugestões recentes</h2>
+          <div id="suggestions" class="list"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">MVP local • Dados armazenados no seu navegador (localStorage). Ideal para demonstração de conceito em pitch.</div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
